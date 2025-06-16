@@ -103,15 +103,41 @@ const SkillName = styled.h4`
 // Component
 const Skills: React.FC<SkillsProps> = ({ id }) => {
   const technicalSkills = [
-    { name: 'Java', percentage: 90, color: '#4CAF50' },
-    { name: 'Spring Boot', percentage: 85, color: '#6DB33F' },
-    { name: 'React', percentage: 80, color: '#61DAFB' },
-    { name: 'Angular', percentage: 75, color: '#DD0031' },
+    // Programming Languages
+    { name: 'TypeScript', percentage: 88, color: '#3178C6' },
+    { name: 'Java', percentage: 82, color: '#5382A1' },
+    { name: 'Python', percentage: 75, color: '#3776AB' },
+    { name: 'JavaScript', percentage: 85, color: '#F7DF1E' },
+    { name: 'SQL', percentage: 80, color: '#336791' },
+    
+    // Frontend
+    { name: 'React', percentage: 85, color: '#61DAFB' },
+    { name: 'Angular', percentage: 78, color: '#DD0031' },
+    { name: 'HTML5', percentage: 90, color: '#E34F26' },
+    { name: 'CSS3', percentage: 88, color: '#1572B6' },
+    { name: 'Redux', percentage: 75, color: '#764ABC' },
+    
+    // Backend & DevOps
     { name: 'Node.js', percentage: 85, color: '#8CC84B' },
-    { name: 'Docker', percentage: 80, color: '#2496ED' },
+    { name: 'Express.js', percentage: 80, color: '#000000' },
+    { name: 'Spring Boot', percentage: 78, color: '#6DB33F' },
+    { name: 'Docker', percentage: 82, color: '#2496ED' },
     { name: 'Kubernetes', percentage: 75, color: '#326CE5' },
+    { name: 'Jenkins', percentage: 78, color: '#D24939' },
+    
+    // Cloud & Databases
     { name: 'AWS', percentage: 80, color: '#FF9900' },
-    { name: 'SQL', percentage: 85, color: '#336791' },
+    { name: 'GCP', percentage: 72, color: '#4285F4' },
+    { name: 'MongoDB', percentage: 78, color: '#47A248' },
+    { name: 'PostgreSQL', percentage: 80, color: '#336791' },
+    { name: 'MySQL', percentage: 82, color: '#4479A1' },
+    
+    // Tools & Other
+    { name: 'Git', percentage: 90, color: '#F05032' },
+    { name: 'Linux', percentage: 80, color: '#FCC624' },
+    { name: 'REST APIs', percentage: 85, color: '#00A67E' },
+    { name: 'GraphQL', percentage: 75, color: '#E10098' },
+    { name: 'TypeORM', percentage: 78, color: '#FB2E76' }
   ];
 
   const skillCategories = [
@@ -120,8 +146,20 @@ const Skills: React.FC<SkillsProps> = ({ id }) => {
       skills: technicalSkills.slice(0, 5)
     },
     {
-      title: 'Frameworks & Tools',
-      skills: technicalSkills.slice(5, 9)
+      title: 'Frontend Development',
+      skills: technicalSkills.slice(5, 10)
+    },
+    {
+      title: 'Backend & DevOps',
+      skills: technicalSkills.slice(10, 16)
+    },
+    {
+      title: 'Cloud & Databases',
+      skills: technicalSkills.slice(16, 21)
+    },
+    {
+      title: 'Tools & Other',
+      skills: technicalSkills.slice(21)
     }
   ];
 

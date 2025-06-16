@@ -161,26 +161,7 @@ const Sidebar: React.FC<SidebarProps> = ({ onNavigate }) => {
               Projects
             </StyledNavLink>
           </NavItem>
-          <NavItem>
-            <a 
-              href="ihebchaaraoui_S3-fr%20.pdf" 
-              download="ihebchaaraoui_S3-fr.pdf"
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '0.5rem',
-                padding: '0.5rem 1rem',
-                color: 'inherit',
-                textDecoration: 'none',
-              }}
-              onMouseOver={(e) => (e.currentTarget.style.color = theme.colors.primary)}
-              onMouseOut={(e) => (e.currentTarget.style.color = 'inherit')}
-              type="application/pdf"
-            >
-              <FaFilePdf />
-              Télécharger CV
-            </a>
-          </NavItem>
+          
         </NavList>
       </Nav>
 
