@@ -1,0 +1,267 @@
+import React from 'react';
+import styled from 'styled-components';
+import { motion } from 'framer-motion';
+import { FaEnvelope, FaPhone, FaExternalLinkAlt, FaGlobe, FaStar } from 'react-icons/fa';
+import { personalInfo, skills } from '../data/data';
+import { Container } from '../styles/Layout';
+import { theme } from '../styles/GlobalStyles';
+
+const StyledHeader = styled.header`
+  background: linear-gradient(135deg, ${theme.colors.primary}, ${theme.colors.secondary});
+  color: ${theme.colors.white};
+  padding: 3rem 0;
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    opacity: 0.5;
+  }
+`;
+
+const HeaderContent = styled(Container)`
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  
+  @media (min-width: ${theme.breakpoints.md}) {
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+`;
+
+const TitleWrapper = styled.div`
+  margin-bottom: 1.5rem;
+  width: 100%;
+  
+  @media (min-width: ${theme.breakpoints.md}) {
+    margin-bottom: 0;
+    width: auto;
+  }
+`;
+
+const Name = styled(motion.h1)`
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  
+  @media (min-width: ${theme.breakpoints.lg}) {
+    font-size: 3rem;
+  }
+`;
+
+const Title = styled(motion.p)`
+  font-size: 1.25rem;
+  opacity: 0.9;
+  font-weight: 300;
+`;
+
+const ContactInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+  width: 100%;
+  
+  @media (min-width: ${theme.breakpoints.sm}) {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  @media (min-width: ${theme.breakpoints.md}) {
+    justify-content: flex-end;
+    width: auto;
+    margin-bottom: 0;
+  }
+`;
+
+const ContactItem = styled(motion.a)`
+  display: inline-flex;
+  align-items: center;
+  color: ${theme.colors.white};
+  margin: 0.25rem 0;
+  font-size: 0.9rem;
+  text-decoration: none;
+  
+  svg {
+    margin-right: 0.5rem;
+    font-size: 1rem;
+  }
+  
+  &:hover {
+    text-decoration: underline;
+  }
+`;
+
+const HeaderDetails = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  width: 100%;
+  
+  @media (min-width: ${theme.breakpoints.md}) {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+`;
+
+const InfoSection = styled.div`
+  flex: 1;
+  margin-bottom: 1.5rem;
+  
+  @media (min-width: ${theme.breakpoints.md}) {
+    margin-bottom: 0;
+    padding-right: 2rem;
+    
+    &:not(:last-child) {
+      border-right: 1px solid rgba(255, 255, 255, 0.1);
+    }
+  }
+`;
+
+const SectionTitle = styled.h4`
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: ${theme.colors.white};
+  
+  svg {
+    color: ${theme.colors.secondary};
+  }
+`;
+
+const InfoList = styled.ul`
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+`;
+
+const InfoItem = styled.li`
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.9);
+  display: flex;
+  align-items: center;
+  
+  &::before {
+    content: '•';
+    color: ${theme.colors.secondary};
+    margin-right: 0.5rem;
+    font-size: 1.2rem;
+    line-height: 1;
+  }
+`;
+
+const Header: React.FC = () => {
+  return (
+    <StyledHeader>
+      <HeaderContent>
+        <TitleWrapper>
+          <Name
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            {personalInfo.name}
+          </Name>
+          <Title
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
+            {personalInfo.title}
+          </Title>
+        </TitleWrapper>
+        
+        <ContactInfo>
+          <ContactItem 
+            href={`tel:${personalInfo.phone}`}
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+          >
+            <FaPhone /> {personalInfo.phone}
+          </ContactItem>
+          <ContactItem 
+            href={`mailto:${personalInfo.email}`}
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: 0.5 }}
+          >
+            <FaEnvelope /> {personalInfo.email}
+          </ContactItem>
+          <ContactItem 
+            href={personalInfo.portfolio} 
+            target="_blank" 
+            rel="noopener noreferrer"
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: 0.6 }}
+          >
+            <FaExternalLinkAlt /> Portfolio
+          </ContactItem>
+        </ContactInfo>
+
+        <HeaderDetails>
+          <InfoSection>
+            <SectionTitle>
+              <FaGlobe /> Languages
+            </SectionTitle>
+            <InfoList>
+              {skills.languages.map((lang: { name: string; level: string }, index: number) => (
+                <motion.li
+                  key={index}
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.7 + (index * 0.1) }}
+                >
+                  <InfoItem>
+                    {lang.name} <span style={{ opacity: 0.8 }}>({lang.level})</span>
+                  </InfoItem>
+                </motion.li>
+              ))}
+            </InfoList>
+          </InfoSection>
+          
+          <InfoSection>
+            <SectionTitle>
+              <FaStar /> Expertise
+            </SectionTitle>
+            <InfoList>
+              {skills.expertise.map((item: string, index: number) => (
+                <motion.li
+                  key={index}
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.8 + (index * 0.1) }}
+                >
+                  <InfoItem>{item}</InfoItem>
+                </motion.li>
+              ))}
+            </InfoList>
+          </InfoSection>
+        </HeaderDetails>
+      </HeaderContent>
+    </StyledHeader>
+  );
+};
+
+export default Header;

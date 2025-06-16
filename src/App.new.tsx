@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Routes, Route, Link, useLocation } from 'react-router-dom';
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
 import styled, { ThemeProvider } from 'styled-components';
 import { GlobalStyles, theme } from './styles/GlobalStyles';
 import Header from './components/Header';
@@ -12,6 +12,7 @@ import Experience from './components/Experience';
 import Projects from './components/Projects';
 import Footer from './components/Footer';
 
+// Styled components
 const AppContainer = styled.div`
   min-height: 100vh;
   display: flex;
@@ -24,29 +25,21 @@ const Layout = styled.div`
   padding-top: 70px; /* Height of the header */
 `;
 
-interface SidebarWrapperProps {
-  $isOpen: boolean;
-}
-
-const SidebarWrapper = styled.div<SidebarWrapperProps>`
+const SidebarWrapper = styled.div<{ $isOpen: boolean }>`
   width: 300px;
   flex-shrink: 0;
   position: fixed;
-  top: 70px; /* Height of the header */
+  top: 70px;
   bottom: 0;
   left: 0;
   overflow-y: auto;
-  z-index: 1000;
+  z-index: 100;
   background: ${theme.colors.primary};
   transition: transform 0.3s ease-in-out;
   
   @media (max-width: ${theme.breakpoints.lg}) {
     transform: ${({ $isOpen }) => $isOpen ? 'translateX(0)' : 'translateX(-100%)'};
     width: 280px;
-  }
-  
-  @media (min-width: ${theme.breakpoints.lg}) {
-    transform: none !important;
   }
 `;
 
@@ -69,13 +62,14 @@ const BackToHome = styled(Link)`
 
 const MainContent = styled.main`
   flex: 1;
-  margin-left: 300px; /* Width of the sidebar */
+  margin-left: 300px;
   padding: 2rem;
+  min-height: calc(100vh - 70px);
   
   @media (max-width: ${theme.breakpoints.lg}) {
     margin-left: 0;
     padding: 1rem;
-    padding-top: 70px; /* Height of the header */
+    padding-top: 70px;
   }
 `;
 
@@ -95,16 +89,11 @@ const AppContent: React.FC = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const location = useLocation();
   const isHome = location.pathname === '/';
-  
-  // Close sidebar when route changes
-  useEffect(() => {
-    setIsSidebarOpen(false);
-  }, [location]);
 
   return (
     <AppContainer>
       <GlobalStyles />
-      <Header onMenuToggle={() => setIsSidebarOpen(prev => !prev)} />
+      <Header onMenuToggle={() => setIsSidebarOpen(!isSidebarOpen)} />
       <Layout>
         <SidebarWrapper $isOpen={isSidebarOpen}>
           <Sidebar onNavigate={() => setIsSidebarOpen(false)} />
@@ -124,11 +113,13 @@ const AppContent: React.FC = () => {
   );
 };
 
-// Main App component with ThemeProvider
+// Main App component with Router and ThemeProvider
 const App: React.FC = () => (
-  <ThemeProvider theme={theme}>
-    <AppContent />
-  </ThemeProvider>
+  <Router>
+    <ThemeProvider theme={theme}>
+      <AppContent />
+    </ThemeProvider>
+  </Router>
 );
 
 export default App;
