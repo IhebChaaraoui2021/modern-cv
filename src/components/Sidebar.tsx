@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { FaEnvelope, FaPhone, FaGlobe, FaUser, FaProjectDiagram } from 'react-icons/fa';
+import { FaEnvelope, FaPhone, FaGlobe, FaUser, FaProjectDiagram, FaFilePdf } from 'react-icons/fa';
 import { personalInfo } from '../data/data';
 import { theme } from '../styles/GlobalStyles';
 
@@ -161,6 +161,26 @@ const Sidebar: React.FC<SidebarProps> = ({ onNavigate }) => {
               Projects
             </StyledNavLink>
           </NavItem>
+          <NavItem>
+            <a 
+              href="ihebchaaraoui_S3-fr%20.pdf" 
+              download="ihebchaaraoui_S3-fr.pdf"
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.5rem',
+                padding: '0.5rem 1rem',
+                color: 'inherit',
+                textDecoration: 'none',
+              }}
+              onMouseOver={(e) => (e.currentTarget.style.color = theme.colors.primary)}
+              onMouseOut={(e) => (e.currentTarget.style.color = 'inherit')}
+              type="application/pdf"
+            >
+              <FaFilePdf />
+              Télécharger CV
+            </a>
+          </NavItem>
         </NavList>
       </Nav>
 
@@ -176,6 +196,13 @@ const Sidebar: React.FC<SidebarProps> = ({ onNavigate }) => {
             <FaGlobe /> {personalInfo.portfolio.replace(/^https?:\/\//, '')}
           </ContactItem>
         )}
+        <ContactItem 
+          href="ihebchaaraoui_S3-fr%20.pdf" 
+          download="ihebchaaraoui_S3-fr.pdf"
+          style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}
+        >
+          <FaFilePdf /> Télécharger CV
+        </ContactItem>
       </ContactInfo>
     </SidebarContainer>
   );

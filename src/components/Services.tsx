@@ -97,9 +97,9 @@ const services = [
   },
   {
     id: 2,
-    title: 'Mobile Development',
-    description: 'Building cross-platform mobile applications with React Native for iOS and Android.',
-    icon: <FaMobileAlt />
+    title: 'DevSecOps',
+    description: 'Implementing security practices into DevOps processes to build secure and reliable CI/CD pipelines.',
+    icon: <FaServer />
   },
   {
     id: 3,
